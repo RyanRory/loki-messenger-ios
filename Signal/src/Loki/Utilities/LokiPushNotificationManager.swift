@@ -13,8 +13,8 @@ final class LokiPushNotificationManager : NSObject {
     func register(with token: Data) {
         let hexEncodedToken = token.map { String(format: "%02.2hhx", $0) }.joined()
         let oldToken = UserDefaults.standard.string(forKey: "deviceToken")
-        let lastUploadTime = UserDefaults.standard.integer(forKey: "lastUploadTime")
-        let now = Int(Date().timeIntervalSince1970)
+        let lastUploadTime = UserDefaults.standard.double(forKey: "lastTimeUploadingDeviceToken")
+        let now = Date().timeIntervalSince1970
         if hexEncodedToken == oldToken && now - lastUploadTime < 48 * 60 * 60  {
             Logger.info("Token is not changed, no need to upload")
             return
