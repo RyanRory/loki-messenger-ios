@@ -42,6 +42,7 @@ public final class OpenGroupPollerV2 : NSObject {
 
     @discardableResult
     public func poll(isBackgroundPoll: Bool) -> Promise<Void> {
+        SNLog("Ryan Test: \(self.server) start to poll at \(Date())");
         guard !self.isPolling else { return Promise.value(()) }
         self.isPolling = true
         let (promise, seal) = Promise<Void>.pending()
@@ -50,6 +51,7 @@ public final class OpenGroupPollerV2 : NSObject {
             guard let self = self else { return }
             self.isPolling = false
             bodies.forEach { self.handleCompactPollBody($0, isBackgroundPoll: isBackgroundPoll) }
+            SNLog("Ryan Test: \(self.server) finish a round of polling at \(Date())");
             seal.fulfill(())
         }.catch(on: OpenGroupAPIV2.workQueue) { error in
             SNLog("Open group polling failed due to error: \(error).")

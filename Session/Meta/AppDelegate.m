@@ -362,6 +362,7 @@ static NSTimeInterval launchStartedAt;
     OWSAssertIsOnMainThread();
 
     static dispatch_once_t onceToken;
+    OWSLogInfo(@"Ryan Test: start handle activation at %@", NSDate.now);
     dispatch_once(&onceToken, ^{
         if ([self.tsAccountManager isRegistered]) {
             // At this point, potentially lengthy DB locking migrations could be running.
@@ -727,6 +728,7 @@ static NSTimeInterval launchStartedAt;
 
 - (void)startOpenGroupPollersIfNeeded
 {
+    OWSLogInfo(@"Ryan Test: start open group poller at %@", NSDate.now);
     [SNOpenGroupManagerV2.shared startPolling];
 }
 

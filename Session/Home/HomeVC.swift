@@ -216,6 +216,7 @@ final class HomeVC : BaseVC, UITableViewDataSource, UITableViewDelegate, NewConv
         var rowChanges = NSArray()
         ext.getSectionChanges(&sectionChanges, rowChanges: &rowChanges, for: notifications, with: threads)
         guard sectionChanges.count > 0 || rowChanges.count > 0 else { return }
+        SNLog("Ryan Test: Home screen start to update changes at \(Date())");
         tableView.beginUpdates()
         rowChanges.forEach { rowChange in
             let rowChange = rowChange as! YapDatabaseViewRowChange
