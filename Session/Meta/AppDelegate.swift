@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         Cryptography.seedRandom()
         AppVersion.sharedInstance()
+        _ = AppEnvironment.shared
 
         // Prevent the device from sleeping during database view async registration
         // (e.g. long database upgrades).
@@ -111,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             object: nil
         )
         
-        Logger.info("application: didFinishLaunchingWithOptions completed.")
+        SNLog("application: didFinishLaunchingWithOptions completed.")
 
         return true
     }

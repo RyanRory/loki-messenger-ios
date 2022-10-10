@@ -136,6 +136,9 @@ public final class SessionCallManager: NSObject, CallManagerProtocol {
         func handleCallEnded() {
             WebRTCSession.current = nil
             UserDefaults.sharedLokiProject?.set(false, forKey: "isCallOngoing")
+            if CurrentAppContext().isInBackground() {
+                (UIApplication.shared.delegate as? AppDelegate)?.stopPollers()
+            }
         }
         
         guard let call = currentCall else {
