@@ -138,6 +138,7 @@ public final class SessionCallManager: NSObject, CallManagerProtocol {
             UserDefaults.sharedLokiProject?.set(false, forKey: "isCallOngoing")
             if CurrentAppContext().isInBackground() {
                 (UIApplication.shared.delegate as? AppDelegate)?.stopPollers()
+                DDLog.flushLog()
             }
         }
         
