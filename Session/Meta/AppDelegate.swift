@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         Cryptography.seedRandom()
         AppVersion.sharedInstance()
-        _ = AppEnvironment.shared
+        AppEnvironment.shared.pushRegistrationManager.createVoipRegistryIfNecessary()
 
         // Prevent the device from sleeping during database view async registration
         // (e.g. long database upgrades).

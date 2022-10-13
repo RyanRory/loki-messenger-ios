@@ -173,11 +173,11 @@ public enum PushRegistrationError: Error {
         }
     }
     
-    private func createVoipRegistryIfNecessary() {
+    public func createVoipRegistryIfNecessary() {
         AssertIsOnMainThread()
 
         guard voipRegistry == nil else { return }
-        let voipRegistry = PKPushRegistry(queue: nil)
+        let voipRegistry = PKPushRegistry(queue: DispatchQueue.main)
         self.voipRegistry  = voipRegistry
         voipRegistry.desiredPushTypes = [.voIP]
         voipRegistry.delegate = self
@@ -236,7 +236,7 @@ public enum PushRegistrationError: Error {
     }
     
     // NOTE: This function MUST report an incoming call.
-    public func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType) {
+    public func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
         SNLog("[Calls] Receive new voip notification.")
         owsAssertDebug(CurrentAppContext().isMainApp)
         owsAssertDebug(type == .voIP)
@@ -299,6 +299,7 @@ public enum PushRegistrationError: Error {
                 SNLog("[Calls] Failed to report incoming call to CallKit due to error: \(error)")
             }
         }
+        completion()
     }
 }
 
