@@ -209459,28 +209459,10 @@
     "groupNotUpdatedWarning" : {
       "extractionState" : "manual",
       "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Skupina nebyla aktualizována déle než 30 dní. Může dojít k problémům s odesíláním zpráv nebo zobrazováním informací o skupině."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Die Gruppe wurde in mehr als 30 Tagen nicht aktualisiert. Möglicherweise können Probleme beim Senden von Nachrichten oder beim Anzeigen von Gruppeninformationen auftreten."
-          }
-        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Group has not been updated in over 30 days. You may experience issues sending messages or viewing Group information."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Группа не обновлялась более 30 дней. Вы можете столкнуться с проблемами при отправке сообщений или просмотре информации группы."
+            "value" : "This group has not been updated in over 30 days. You may experience issues sending messages or viewing group information."
           }
         }
       }
@@ -266135,6 +266117,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "回覆至"
+          }
+        }
+      }
+    },
+    "messageRequestDisabledToastAttachments" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You cannot send attachments until your Message Request is accepted"
+          }
+        }
+      }
+    },
+    "messageRequestDisabledToastVoiceMessages" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You cannot send voice messages until your Message Request is accepted"
           }
         }
       }
