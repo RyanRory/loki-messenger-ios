@@ -517,7 +517,7 @@ public final class SessionCall: CurrentCallProtocol, WebRTCSessionDelegate {
         
         let timeInterval: TimeInterval = 60
         
-        timeOutTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false) { [weak self, dependencies] _ in
+        timeOutTimer = Timer.scheduledTimerOnMainThread(withTimeInterval: timeInterval, repeats: false, using: dependencies) { [weak self, dependencies] _ in
             self?.didTimeout = true
             
             dependencies[singleton: .callManager].endCall(self) { error in

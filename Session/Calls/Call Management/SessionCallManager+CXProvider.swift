@@ -65,11 +65,11 @@ extension SessionCallManager: CXProviderDelegate {
     }
     
     public func provider(_ provider: CXProvider, perform action: CXSetHeldCallAction) {
-        // TODO: [CALLS] set on hold
+        Log.info(.calls, "Shouldn't happen: Perform CXSetHeldCallAction.")
     }
     
     public func provider(_ provider: CXProvider, timedOutPerforming action: CXAction) {
-        // TODO: [CALLS] handle timeout
+        Log.info(.calls, "Timed out performing action.")
     }
     
     public func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
