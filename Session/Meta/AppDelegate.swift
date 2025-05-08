@@ -271,6 +271,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationDidBecomeActive(_ application: UIApplication) {
         Log.info(.cat, "applicationDidBecomeActive.")
         guard !SNUtilitiesKit.isRunningTests else { return }
+//        signal(SIGPIPE, SIG_IGN)
         
         Log.info(.cat, "Setting 'isMainAppActive' to true.")
         dependencies[defaults: .appGroup, key: .isMainAppActive] = true
@@ -965,6 +966,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let call: SessionCall = (dependencies[singleton: .callManager].currentCall as? SessionCall),
             MiniCallView.current == nil
         else { return }
+        
+        Log.info(.cat, "Handling app activated with ongoing call if needed.")
         
         if let callVC = dependencies[singleton: .appContext].frontMostViewController as? CallVC, callVC.call.uuid == call.uuid {
             return

@@ -300,6 +300,7 @@ public final class SessionCall: CurrentCallProtocol, WebRTCSessionDelegate {
     }
     
     public func handleCallFailed(reason: String? = nil) {
+        Log.info(.calls, "Handling call failed: \(String(describing: reason))")
         self.endSessionCall()
         dependencies[singleton: .callManager].reportCurrentCallEnded(reason: .failed)
         dependencies[singleton: .storage].writeAsync { [sessionId, uuid] db in
@@ -516,7 +517,7 @@ public final class SessionCall: CurrentCallProtocol, WebRTCSessionDelegate {
         
         let timeInterval: TimeInterval = 60
         
-        timeOutTimer = Timer.scheduledTimerOnMainThread(withTimeInterval: timeInterval, repeats: false, using: dependencies) { [weak self, dependencies] _ in
+        timeOutTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false) { [weak self, dependencies] _ in
             self?.didTimeout = true
             
             dependencies[singleton: .callManager].endCall(self) { error in

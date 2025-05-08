@@ -207,6 +207,8 @@ extension Permissions {
     }
     
     public static func checkLocalNetworkPermissionWithBonjour() async throws -> Bool {
+        Log.info(.calls, "Checking local network permission with Bonjour")
+        
         let type = "_session_local_network_access_check._tcp" // stringlint:ignore
         let queue = DispatchQueue(label: "localNetworkAuthCheck")
 

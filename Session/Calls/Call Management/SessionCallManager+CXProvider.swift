@@ -8,7 +8,7 @@ import SessionUtilitiesKit
 extension SessionCallManager: CXProviderDelegate {
     public func providerDidReset(_ provider: CXProvider) {
         Log.assertOnMainThread()
-        (currentCall as? SessionCall)?.endSessionCall()
+        Log.info(.calls, "CXProvider did reset")
     }
     
     public func provider(_ provider: CXProvider, perform action: CXStartCallAction) {
@@ -23,7 +23,7 @@ extension SessionCallManager: CXProviderDelegate {
     
     public func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
         Log.assertOnMainThread()
-        Log.debug(.calls, "Perform CXAnswerCallAction")
+        Log.info(.calls, "Perform CXAnswerCallAction")
         
         guard let call: SessionCall = (self.currentCall as? SessionCall) else {
             Log.warn("[CallKit] No session call")
@@ -41,7 +41,7 @@ extension SessionCallManager: CXProviderDelegate {
     }
     
     public func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
-        Log.debug(.calls, "Perform CXEndCallAction")
+        Log.info(.calls, "Perform CXEndCallAction")
         Log.assertOnMainThread()
         
         if endCallAction() {
@@ -53,7 +53,7 @@ extension SessionCallManager: CXProviderDelegate {
     }
     
     public func provider(_ provider: CXProvider, perform action: CXSetMutedCallAction) {
-        Log.debug(.calls, "Perform CXSetMutedCallAction, isMuted: \(action.isMuted)")
+        Log.info(.calls, "Perform CXSetMutedCallAction, isMuted: \(action.isMuted)")
         Log.assertOnMainThread()
         
         if setMutedCallAction(isMuted: action.isMuted) {
@@ -73,7 +73,7 @@ extension SessionCallManager: CXProviderDelegate {
     }
     
     public func provider(_ provider: CXProvider, didActivate audioSession: AVAudioSession) {
-        Log.debug(.calls, "Audio session did activate.")
+        Log.info(.calls, "Audio session did activate.")
         Log.assertOnMainThread()
         guard let call: SessionCall = (self.currentCall as? SessionCall) else { return }
         
@@ -82,7 +82,7 @@ extension SessionCallManager: CXProviderDelegate {
     }
     
     public func provider(_ provider: CXProvider, didDeactivate audioSession: AVAudioSession) {
-        Log.debug(.calls, "Audio session did deactivate.")
+        Log.info(.calls, "Audio session did deactivate.")
         Log.assertOnMainThread()
         guard let call: SessionCall = (self.currentCall as? SessionCall) else { return }
         
